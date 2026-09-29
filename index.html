@@ -3,12 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>心血管疾病知识科普智能问答系统</title>
+<title>心血管疾病患者居家心脏康复自我管理行为智能问答系统</title>
 <style>
-:root{--blue:#287cf0;--dark:#203452;--line:#dce8f8;--bg:#f4f8ff}*{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:linear-gradient(180deg,#eaf2ff,#f8fafc);color:#24364f}.app{max-width:960px;margin:40px auto;padding:0 16px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 12px 30px #3977b21c}.header{padding:28px;background:linear-gradient(#fff,#f3f8ff);border-bottom:1px solid var(--line)}h1{text-align:center;margin:0;color:#1d2f50;font-size:clamp(24px,4vw,36px)}.subtitle{text-align:center;color:#61738c;margin:10px 0 20px;font-weight:bold}.query{display:flex;gap:10px;max-width:760px;margin:auto;padding:9px 10px 9px 16px;background:#f8fbff;border:1px solid var(--line);border-radius:15px}.query input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:16px}.query button{border:0;border-radius:11px;padding:12px 20px;background:var(--blue);color:white;font-size:15px;font-weight:bold;cursor:pointer}.examples{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px}.examples button{border:1px solid #d8e6fb;background:#edf4ff;color:#3263a7;border-radius:20px;padding:8px 14px;cursor:pointer}.panel{padding:22px 28px}.title{font-size:19px;font-weight:bold;color:var(--dark);margin:0 0 14px}.answer{min-height:118px;padding:20px;background:linear-gradient(#fbfdff,#edf7ff);border:1px solid var(--line);border-radius:15px;line-height:1.9;font-size:16px}.graph{margin-top:22px;padding:20px;border:1px solid var(--line);border-radius:16px;text-align:center}.graph img{width:100%;max-width:800px;height:auto;display:block;margin:0 auto;border-radius:12px}.source{color:#65758b;margin-top:18px;font-size:14px}@media(max-width:600px){.header,.panel{padding-left:16px;padding-right:16px}.query{flex-direction:column}.query button{width:100%}}
+:root{--blue:#287cf0;--dark:#203452;--line:#dce8f8;--bg:#f4f8ff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:linear-gradient(180deg,#eaf2ff,#f8fbff);color:#24364f}
+.app{max-width:960px;margin:40px auto;padding:0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(57,119,178,.12)}
+.header{padding:28px 28px 18px;background:linear-gradient(180deg,#fff,#f3f8ff);border-bottom:1px solid var(--line)}
+h1{text-align:center;margin:0;color:#1d2f50;font-size:clamp(24px,4vw,36px)}
+.subtitle{text-align:center;color:#61738c;margin:10px 0 20px;font-weight:bold}
+.query{display:flex;gap:10px;max-width:760px;margin:0 auto;padding:9px 10px 9px 16px;background:#f8fbff;border:1px solid var(--line);border-radius:15px}
+.query input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:16px}
+.query button{border:0;border-radius:11px;padding:12px 20px;background:var(--blue);color:#fff;font-size:15px;font-weight:bold;cursor:pointer}
+.examples{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px auto 0;max-width:760px}
+.examples button{border:1px solid #d8e6fb;background:#edf4ff;color:#3263a7;border-radius:20px;padding:8px 14px;cursor:pointer}
+.panel{padding:22px 28px 28px}
+.title{font-size:19px;font-weight:bold;color:var(--dark);margin:0 0 14px}
+.answer{min-height:118px;padding:20px;background:linear-gradient(#fbfdff,#edf7ff);border:1px solid var(--line);border-radius:15px;line-height:1.9;font-size:16px}
+.graph{margin-top:22px;padding:20px;border:1px solid var(--line);border-radius:16px;text-align:center}
+.graph img{width:100%;max-width:800px;height:auto;display:block;margin:0 auto;border-radius:12px}
+.source{color:#65758b;margin-top:18px;font-size:14px}
+@media (max-width:600px){
+  .header,.panel{padding-left:16px;padding-right:16px}
+  .query{flex-direction:column}
+  .query button{width:100%}
+}
 </style>
 </head>
 <body>
-<main class="app"><section class="card"><header class="header"><h1>❤️ 心血管疾病知识科普智能问答系统</h1><div class="subtitle">基于知识图谱的心血管健康知识问答</div><div class="query"><input id="q" value="心力衰竭有哪些常见症状？" placeholder="请输入你的问题"><button onclick="ask()">🔍 提问</button></div><div class="examples"><button onclick="use(this)">什么是心力衰竭？</button><button onclick="use(this)">心力衰竭有哪些常见症状？</button><button onclick="use(this)">为什么要监测体重？</button><button onclick="use(this)">如何控制心力衰竭？</button></div></header><section class="panel"><h2 class="title">💡 科普回答</h2><div id="answer" class="answer">常见表现包括呼吸困难、乏力以及下肢水肿等。若症状加重，可能出现夜间憋醒、活动耐量下降或体重明显增加，需尽早就医评估。</div><div class="graph"><h2 class="title">🕸️ 相关知识</h2><img src="https://raw.githubusercontent.com/gxn14/heart-health-qa/main/knowledge-graph.png.png" alt="心血管健康知识图谱" style="width:100%;max-width:800px;border-radius:12px;"></div><div class="source">📚 知识来源：相关健康科普资料</div></section></section></main>
+<main class="app">
+  <section class="card">
+    <header class="header">
+      <h1>❤️ 心血管疾病患者居家心脏康复自我管理行为智能问答系统</h1>
+      <div class="subtitle">基于知识图谱的心血管健康知识问答</div>
+      <div class="query">
+        <input id="q" value="什么是心力衰竭" placeholder="请输入您的问题..."/>
+        <button onclick="ask()">提问</button>
+      </div>
+      <div class="examples">
+        <button onclick="use(this)">什么是心力衰竭</button>
+        <button onclick="use(this)">冠心病常见症状有哪些</button>
+        <button onclick="use(this)">高血压患者如何控制血压</button>
+        <button onclick="use(this)">心脏康复的注意事项</button>
+        <button onclick="use(this)">如何预防心梗</button>
+      </div>
+    </header>
+    <section class="panel">
+      <h2 class="title">智能回答</h2>
+      <div id="answer" class="answer">心力衰竭是指心脏泵血功能下降，无法满足身体需要。它常见于高血压、冠心病、瓣膜病和心肌病等基础疾病之后。</div>
+      <div class="graph">
+        <h2 class="title">知识图谱</h2>
+        <img src="https://raw.githubusercontent.com/gxn14/heart-health-qa/main/knowledge-graph.png" alt="知识图谱" onerror="this.style.display='none'">
+      </div>
+      <div class="source">来源：心血管疾病患者居家心脏康复知识库</div>
+    </section>
+  </section>
+</main>
 <script>
-const answers=[['什么是心力衰竭','心力衰竭是指心脏泵血功能下降，无法满足身体需要。它常见于高血压、冠心病、瓣膜病和心肌病等基础疾病之后
+const answers = [
+  ['什么是心力衰竭','心力衰竭是指心脏泵血功能下降，无法满足身体需要。它常见于高血压、冠心病、瓣膜病和心肌病等基础疾病之后。'],
+  ['冠心病常见症状有哪些','冠心病常见症状包括胸闷、胸痛、心悸、气短、乏力，部分患者还可能出现出汗、恶心或胸前压迫感。若出现持续胸痛要及时就医。'],
+  ['高血压患者如何控制血压','高血压患者应低盐低脂饮食、规律运动、控制体重、按时服药，并定期监测血压，避免情绪波动和过度劳累。'],
+  ['心脏康复的注意事项','心脏康复要遵循“循序渐进”原则，结合医生建议进行有氧运动、力量训练和心理调节，定期复查，并避免高强度劳累和剧烈情绪刺激。'],
+  ['如何预防心梗','预防心梗要控制高血压、高血脂、高血糖，戒烟限酒，规律作息，保持适量运动，减少熬夜和精神压力。'],
+  ['什么是动脉粥样硬化','动脉粥样硬化是血管内膜沉积脂质、纤维和钙盐，导致血管腔狭窄和弹性下��，增加心脑血管疾病风险。'],
+  ['如何识别心绞痛','心绞痛通常表现为胸部紧迫感、压榨样疼痛，可放射到肩背、牙齿或手臂，常在劳累或情绪激动后发作，休息后可缓解。'],
+  ['什么是房颤','房颤是最常见的心律失常之一，表现为心跳不规则、心慌、胸闷，严重时可引起血栓和脑卒中风险。'],
+  ['如何改善心脏健康','改善心脏健康应从饮食、运动、睡眠和情绪管理入手，控制盐和脂肪摄入，积极锻炼，保证规律作息。'],
+  ['心血管疾病患者饮食建议','饮食建议以清淡低盐、低脂、适量蛋白质和膳食纤维为主，增加蔬果、全谷物和豆类摄入，减少油炸和加工食品。']
+];
+
+function findAnswer(q){
+  const text = q.trim();
+  if(!text) return '请先输入您的问题。';
+  for(const [question, answer] of answers){
+    if(text.includes(question) || question.includes(text)){ return answer; }
+  }
+  return '很抱歉，我暂时无法直接回答这个问题。建议您咨询医生或心脏康复专科医生。';
+}
+
+function ask(){
+  const input = document.getElementById('q');
+  const answerEl = document.getElementById('answer');
+  answerEl.textContent = findAnswer(input.value);
+}
+
+function use(btn){
+  const q = document.getElementById('q');
+  q.value = btn.textContent;
+  ask();
+}
+
+document.getElementById('q').addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){ ask(); }
+});
+</script>
+</body>
+</html>
